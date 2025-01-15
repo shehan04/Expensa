@@ -1,4 +1,5 @@
 ﻿using Expenses.Domain.Abstractions;
+using Expenses.Domain.Events;
 using Expenses.Domain.ValueObjects;
 
 namespace Expenses.Domain.Models

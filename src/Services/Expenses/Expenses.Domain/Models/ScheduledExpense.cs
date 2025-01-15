@@ -26,7 +26,6 @@ namespace Expenses.Domain.Models
                 ExpensePeriod = expensePeriod,
                 ExpenseScheduleType = expenseScheduleType,
                 NextExpenseDate = nextExpenseDate,
-                Percentage = percentage,
                 StartedDate = startedDate,
             };
         }
