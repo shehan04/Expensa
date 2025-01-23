@@ -9,3 +9,16 @@ services:
     restart: always
     ports:
       - "1435:1433"
+  expenses.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=127.0.0.1,1435;Database=expensedb;User Id=sa;Password=Welcome@1234;Encrypt=False;TrustServerCertificate=True
+    depends_on:
+      - expensedb
+    ports:
+      - "6003:8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
