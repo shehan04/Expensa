@@ -5,7 +5,7 @@ services:
     container_name: expensedb
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=SwN12345678
+      - MSSQL_SA_PASSWORD=Welcome@1234
     restart: always
     ports:
-      - "1433:1433"
+      - "1435:1433"

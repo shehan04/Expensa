@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   expensedb:
-    image:  mcr.microsoft.com/mssql/server
+    image:  mcr.microsoft.com/mssql/server:2022-latest
 
   expenses.api:
     image: ${DOCKER_REGISTRY-}expensesapi
