@@ -15,6 +15,11 @@ builder.Services.AddApplicationServices()
 //builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseApiServices();
+if (app.Environment.IsDevelopment())
+{
+    await app.InitialiseDatabaseAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
