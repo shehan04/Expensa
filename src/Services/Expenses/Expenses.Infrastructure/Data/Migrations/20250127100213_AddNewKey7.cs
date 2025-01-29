@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Expenses.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class AddNewKey7 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ExpeseCategories",
+                name: "ExpenseCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -25,7 +25,7 @@ namespace Expenses.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExpeseCategories", x => x.Id);
+                    table.PrimaryKey("PK_ExpenseCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +55,8 @@ namespace Expenses.Infrastructure.Data.Migrations
                 name: "Expenses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -71,9 +72,9 @@ namespace Expenses.Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_Expenses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Expenses_ExpeseCategories_CategoryId",
+                        name: "FK_Expenses_ExpenseCategories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "ExpeseCategories",
+                        principalTable: "ExpenseCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -127,7 +128,7 @@ namespace Expenses.Infrastructure.Data.Migrations
                 name: "Expenses");
 
             migrationBuilder.DropTable(
-                name: "ExpeseCategories");
+                name: "ExpenseCategories");
         }
     }
 }

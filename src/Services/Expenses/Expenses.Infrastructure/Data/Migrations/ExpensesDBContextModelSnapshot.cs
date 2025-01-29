@@ -25,7 +25,10 @@ namespace Expenses.Infrastructure.Data.Migrations
             modelBuilder.Entity("Expenses.Domain.Models.Expense", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -66,6 +69,35 @@ namespace Expenses.Infrastructure.Data.Migrations
                     b.ToTable("Expenses");
                 });
 
+            modelBuilder.Entity("Expenses.Domain.Models.ExpenseCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExpenseCategories");
+                });
+
             modelBuilder.Entity("Expenses.Domain.Models.ExpenseItem", b =>
                 {
                     b.Property<int>("Id")
@@ -101,35 +133,6 @@ namespace Expenses.Infrastructure.Data.Migrations
                     b.HasIndex("ExpenseId");
 
                     b.ToTable("ExpenseItems");
-                });
-
-            modelBuilder.Entity("Expenses.Domain.Models.ExpeseCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExpeseCategories");
                 });
 
             modelBuilder.Entity("Expenses.Domain.Models.ScheduledExpense", b =>
@@ -181,7 +184,7 @@ namespace Expenses.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Expenses.Domain.Models.Expense", b =>
                 {
-                    b.HasOne("Expenses.Domain.Models.ExpeseCategory", null)
+                    b.HasOne("Expenses.Domain.Models.ExpenseCategory", null)
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

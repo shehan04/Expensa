@@ -3,7 +3,8 @@ using Expenses.API;
 using Expenses.Application;
 using Expenses.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 // Add services to the container.
 builder.Services.AddApplicationServices()
     .AddApiServices()
@@ -18,7 +19,7 @@ var app = builder.Build();
 app.UseApiServices();
 if (app.Environment.IsDevelopment())
 {
-    await app.InitialiseDatabaseAsync();
+   // await app.InitialiseDatabaseAsync();
 }
 
 // Configure the HTTP request pipeline.

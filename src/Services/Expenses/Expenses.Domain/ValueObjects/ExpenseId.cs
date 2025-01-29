@@ -15,10 +15,10 @@ namespace Expenses.Domain.ValueObjects
 
         public static ExpenseId Of(int value)
         {
-            if (value < 0)
-            {
-                throw new DomainException("Expense id cannote be empty");
-            }
+            //if (value < 0)
+            //{
+            //    throw new DomainException("Expense id cannote be empty");
+            //}
             return new ExpenseId(value);
         }
     }

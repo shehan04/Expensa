@@ -2,14 +2,14 @@
 
 namespace Expenses.Domain.Models
 {
-    public class ExpeseCategory : Entity<int>
+    public class ExpenseCategory : Entity<int>
     {
         public string Name { get; private set; } = default!;
 
-        public static ExpeseCategory Create(string name)
+        public static ExpenseCategory Create(string name)
         {
             ArgumentException.ThrowIfNullOrEmpty(name);
-            return new ExpeseCategory
+            return new ExpenseCategory
             {
                 Name = name
             };

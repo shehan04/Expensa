@@ -15,6 +15,7 @@ namespace Expenses.Infrastructure.Data.Configurataions
         public void Configure(EntityTypeBuilder<ExpenseItem> builder)
         {
             builder.HasKey(x => x.Id);
+         //   builder.Property(ei => ei.Id).ValueGeneratedOnAdd();
             builder.Property(c => c.ExpenseId).HasConversion(
                 expenseId => expenseId.Value, dbId => ExpenseId.Of(dbId));
 

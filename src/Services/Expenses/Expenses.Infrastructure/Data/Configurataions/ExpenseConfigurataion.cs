@@ -15,13 +15,14 @@ namespace Expenses.Infrastructure.Data.Configurataions
         public void Configure(EntityTypeBuilder<Expense> builder)
         {
             builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
             builder.Property(o => o.Id).HasConversion(
-                            expenseId => expenseId.Value,
-                            dbId => ExpenseId.Of(dbId));
+                expenseId => expenseId.Value,
+                dbId => ExpenseId.Of(dbId));
             builder.Property(e => e.Name).HasMaxLength(50);
 
-            builder.HasOne<ExpeseCategory>()
+            builder.HasOne<ExpenseCategory>()
                 .WithMany()
                 .HasForeignKey(ec => ec.CategoryId)
                 .IsRequired();

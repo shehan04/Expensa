@@ -14,7 +14,7 @@ namespace Expenses.Domain.Abstractions
     {
         public DateTime? CreatedAt { get; set; }
         public string? CreatedBy {  get; set; }
-        public DateTime? LastModified { get;}
-        public string? LastModifiedBy { get;}
+        public DateTime? LastModified { get; set; }
+        public string? LastModifiedBy { get; set; }
     }
 }
